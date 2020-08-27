@@ -21,13 +21,23 @@ export class UserController {
   }
 
   @Get('list')
-  findAll(): Promise<User[]> {
-    return this.userService.findAll();
+  async findAll(): Promise<User[]> {
+    const userList = await this.userService.findAll();
+    return Object.assign({
+      data: userList,
+      statusCode: 200,
+      statusMsg: `데이터 조회가 성공적으로 완료되었습니다.`,
+    });
   }
 
   @Get(':userId')
-  findOne(@Param('userId') id: string): Promise<User> {
-    return this.userService.findOne(id);
+  async findOne(@Param('userId') id: string): Promise<User> {
+    const foundUser = await this.userService.findOne(id);
+    return Object.assign({
+      data: foundUser,
+      statusCode: 200,
+      statusMsg: `데이터 조회가 성공적으로 완료되었습니다.`,
+    });
   }
 
   @Post()
@@ -49,4 +59,5 @@ export class UserController {
       statusMsg: `deleted successfully`,
     });
   }
+
 }

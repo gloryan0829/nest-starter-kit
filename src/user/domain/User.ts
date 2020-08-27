@@ -3,9 +3,6 @@ import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm/i
 @Entity()
 export class User {
 
-  @PrimaryGeneratedColumn('rowid')
-  id: number;
-
   @PrimaryColumn()
   userId: string;
 
