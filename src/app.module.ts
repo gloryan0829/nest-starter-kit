@@ -14,6 +14,7 @@ import * as cors from 'cors';
 import { ExceptModule } from './exception/except.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/domain/User';
+import { Photo } from './user/domain/Photo';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { User } from './user/domain/User';
       username: 'postgres',
       password: 'password',
       database: 'uaa',
-      entities: [User],
+      autoLoadEntities: true,
+      // entities: [User, Photo],
       synchronize: true,
     }),
     UserModule,
